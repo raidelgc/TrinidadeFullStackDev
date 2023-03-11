@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Panificadora Pão de Ontem - Tabela de preços</h1>
+    <table id="precos">
+      <!-- O conteúdo da tabela será inserido aqui pelo JavaScript -->
+    </table>
+
+    <script>
+      (function () {
+        const precoPao = parseFloat(prompt("Preço do pão: R$"));
+        const tabela = document.getElementById("precos");
+
+        if (!tabela) {
+          console.error("Não foi possível encontrar a tabela de preços");
+          return;
+        }
+
+        for (let i = 1; i <= 50; i++) {
+          const linha = tabela.insertRow();
+          const celulaQuantidade = linha.insertCell();
+          const celulaPreco = linha.insertCell();
+
+          celulaQuantidade.innerHTML = i;
+          celulaPreco.innerHTML = `R$ ${(precoPao * i).toFixed(2)}`;
+        }
+      })();
+    </script>
+  </body>
+</html>

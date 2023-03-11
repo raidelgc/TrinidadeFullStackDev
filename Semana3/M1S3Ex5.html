@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+    }
+
+    .profile {
+      margin: 50px auto;
+      width: 400px;
+      background-color: #f2f2f2;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0px 0px 10px #ccc;
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+
+    .name {
+      margin: 10px 0;
+    }
+
+    .username {
+      color: #666;
+      margin: 0;
+    }
+
+    .bio {
+      margin: 20px 0;
+    }
+
+    .location,
+    .email,
+    .blog {
+      margin: 10px 0;
+    }
+
+    .followers,
+    .following,
+    .public-repos {
+      margin: 10px 0;
+      font-weight: bold;
+    }
+
+    .created-at {
+      margin: 10px 0;
+      color: #666;
+    }
+  </style>
+  <body>
+    <div class="profile">
+      <img class="avatar" src="" alt="Avatar do Github" />
+      <h1 class="name"></h1>
+      <h2 class="username"></h2>
+      <p class="bio"></p>
+      <p class="location"></p>
+      <p class="email"></p>
+      <p class="blog"></p>
+      <p class="followers"></p>
+      <p class="following"></p>
+      <p class="public-repos"></p>
+      <p class="created-at"></p>
+    </div>
+    <script>
+      const profileUrl = "https://api.github.com/users/raidelgc";
+      const profile = document.querySelector(".profile");
+
+      fetch(profileUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          // Populando o HTML com as informações obtidas da API
+          profile.querySelector(".avatar").src = data.avatar_url;
+          profile.querySelector(".name").textContent = data.name;
+          profile.querySelector(".username").textContent = `@${data.login}`;
+          profile.querySelector(".bio").textContent = data.bio;
+          profile.querySelector(
+            ".location"
+          ).textContent = `Localização: ${data.location}`;
+          profile.querySelector(".email").textContent = `Email: ${data.email}`;
+          profile.querySelector(".blog").textContent = `Blog: ${data.blog}`;
+          profile.querySelector(
+            ".followers"
+          ).textContent = `Seguidores: ${data.followers}`;
+          profile.querySelector(
+            ".following"
+          ).textContent = `Seguindo: ${data.following}`;
+          profile.querySelector(
+            ".public-repos"
+          ).textContent = `Repositórios públicos: ${data.public_repos}`;
+          profile.querySelector(
+            ".created-at"
+          ).textContent = `Conta criada em: ${new Date(
+            data.created_at
+          ).toLocaleDateString()}`;
+        })
+        .catch((error) => console.log(error));
+    </script>
+  </body>
+</html>
