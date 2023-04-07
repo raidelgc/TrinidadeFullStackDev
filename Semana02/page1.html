@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function login() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        if (username == "raidel" && password == "1234") {
+          localStorage.setItem("loggedIn", true);
+          window.location.href = "page2.html";
+        } else {
+          alert("Usuário ou senha inválidos");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h2>Página de Login</h2>
+    <label for="username">Usuário:</label>
+    <input type="text" id="username" name="username" />
+    <br /><br />
+    <label for="password">Senha:</label>
+    <input type="password" id="password" name="password" />
+    <br /><br />
+    <button onclick="login()">Login</button>
+  </body>
+</html>
